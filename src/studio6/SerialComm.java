@@ -26,11 +26,27 @@ public class SerialComm {
 		debug = false; // Default is to NOT be in debug mode
 	}
 		
-	// TODO: Add writeByte() method from Studio 5
+	public void writeByte(byte singleByte) throws SerialPortException {
+		port.writeByte(singleByte);
+		if (debug = true) {
+			System.out.println("<0x" + Integer.toHexString(singleByte) + ">");
+		}
+	}
 	
 	// TODO: Add available() method
+	public boolean available() throws SerialPortException {
+		if (port.getInputBufferBytesCount() > 0) {
+			return true;
+		}
+		return false;
+	}
 	
 	// TODO: Add readByte() method	
+	public byte readByte() throws SerialPortException {
+		byte[] byteArray = port.readBytes(1);
+		return byteArray[0];
+	}
 	
 	// TODO: Add a main() method
+	
 }
